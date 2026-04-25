@@ -29,6 +29,9 @@ export class Link {
   @Column({ nullable: true })
   color: string;
 
+  @Column()
+  status: string;
+
   @Column({ type: 'text' })
   openType: OpenType;
 

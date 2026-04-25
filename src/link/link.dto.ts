@@ -17,6 +17,9 @@ export class CreateLinkDto {
   @IsString()
   color?: string;
 
+  @IsString()
+  status: string;
+
   @IsEnum(OpenType)
   openType: OpenType;
 }
