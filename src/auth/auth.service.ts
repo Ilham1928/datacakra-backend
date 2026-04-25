@@ -3,6 +3,7 @@ import {
   Injectable,
   BadRequestException,
   UnauthorizedException,
+  UnprocessableEntityException
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -40,12 +41,12 @@ export class AuthService {
   async login(email: string, password: string) {
     const user = await this.repo.findOne({ where: { email } });
     if (!user) {
-      throw new UnauthorizedException('User tidak ditemukan');
+      throw new UnprocessableEntityException('User tidak ditemukan');
     }
 
     const valid = await bcrypt.compare(password, user.password);
     if (!valid) {
-      throw new UnauthorizedException('Password salah');
+      throw new UnprocessableEntityException('Password salah');
     }
 
     // payload JWT
