@@ -1,4 +1,6 @@
 import { IsEmail, IsString, MinLength, IsNotEmpty } from 'class-validator';
+import { IsUnique } from '../decorators/is-unique.decorator';
+import { User } from '../user/user.entity';
 
 // auth.dto.ts
 export class RegisterDto {
@@ -17,7 +19,8 @@ export class RegisterDto {
 
   @IsString()
   @IsNotEmpty()
-  url?: string;
+  @IsUnique(User, 'url')
+  url: string;
 }
 
 export class LoginDto {
