@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 // links/link.service.ts
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -12,14 +13,21 @@ export class LinkService {
     private repo: Repository<Link>,
   ) {}
 
-  create(data: CreateLinkDto) {
-    const link = this.repo.create(data);
+  create(data: CreateLinkDto, user: { sub: number }) {
+    const link = this.repo.create({
+      ...data,
+      user: { id: user.sub },
+    });
+
     return this.repo.save(link);
   }
 
-  findAll() {
+  findAll(user: { sub: number }) {
     return this.repo.find({
       order: { id: 'DESC' },
+      where: {
+        user: { id: user.sub }, // 🔥 ini yang benar
+      },
     });
   }
 
