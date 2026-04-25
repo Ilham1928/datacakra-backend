@@ -29,7 +29,7 @@ export class Link {
   @Column({ nullable: true })
   color: string;
 
-  @Column()
+  @Column({ nullable: true })
   status: string;
 
   @Column({ type: 'text' })

@@ -16,7 +16,7 @@ import { IsUniqueConstraint } from './validators/unique.validator';
       type: 'postgres',
       url: process.env.DATABASE_URL,
       autoLoadEntities: true,
-      synchronize: true, // ⚠️ hanya untuk development
+      synchronize: true,
       ssl: {
         rejectUnauthorized: false,
       },
