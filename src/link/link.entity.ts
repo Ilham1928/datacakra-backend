@@ -32,6 +32,9 @@ export class Link {
   @Column({ nullable: true })
   status: string;
 
+  @Column({ nullable: true })
+  click: number;
+
   @Column({ type: 'text' })
   openType: OpenType;
 
