@@ -8,7 +8,6 @@ import {
   Body,
   Param,
   Delete,
-  Patch,
   UseGuards,
   Req,
 } from '@nestjs/common';
