@@ -37,7 +37,7 @@ export class LinkController {
     return this.service.findOne(+id);
   }
 
-  @Patch(':id')
+  @Post(':id')
   update(@Param('id') id: string, @Body() data: UpdateLinkDto) {
     return this.service.update(+id, data);
   }
