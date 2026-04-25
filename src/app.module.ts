@@ -12,10 +12,13 @@ import { ConfigModule } from '@nestjs/config';
       isGlobal: true,
     }),
     TypeOrmModule.forRoot({
-      type: 'sqlite',
-      database: 'database.sqlite',
-      entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: true, // DEV only
+      type: 'postgres',
+      url: process.env.DATABASE_URL,
+      autoLoadEntities: true,
+      synchronize: true, // ⚠️ hanya untuk development
+      ssl: {
+        rejectUnauthorized: false,
+      },
     }),
     AuthModule,
     LinkModule,
